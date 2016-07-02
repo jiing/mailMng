@@ -1,0 +1,21 @@
+ <div class="navbar-header">
+          <a href="/letters/" class="navbar-brand">Mustard.org.tw 郵務系統</a>
+        </div class="span3">
+         <ul class="nav navbar-nav pull-right the-icons">
+            <% if user_signed_in? %>
+             <span class="glyphicon icon-large glyphicon-user"></span><%= current_user.name %> 您好，現有<span class="badge"><%= Letter.count %></span>封郵件，其中<span class="label label-success label-as-badge "><%= Letter.is_valid.count %></span>封為在時限(15:00~17:00)內登記的 
+             <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon icon-large glyphicon-log-out"></span><%= link_to " 登出網站", destroy_user_session_path, :method=>:delete %></button>
+                  <% if current_user.is_admin? %>
+                      <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon icon-large glyphicon-tag"></span><%= link_to " 管理郵件分類", categories_path %></button>
+                  <% end %>
+
+          <% else %>
+          <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon icon-large glyphicon-log-in"></span><%= link_to " 登入網站", new_user_session_path %></button>
+           <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon icon-large glyphicon-user"></span><%= link_to " 加入會員", new_user_registration_path %></button>
+          <% end %>
+            <!-- <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon icon-large glyphicon-grain"></span><a href="#"> 關於我們</a></button>
+              <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon icon-large glyphicon-map-marker"></span><a href="#"> 網站地圖</a></button> -->
+
+         </ul>
+      </div>
+    </div>

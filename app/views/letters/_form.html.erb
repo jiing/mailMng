@@ -1,0 +1,40 @@
+<div class="form-group">
+<%= form_for(@letter) do |f| %>
+  <% if @letter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@letter.errors.count, "error") %> prohibited this letter from being saved:</h2>
+
+      <ul>
+      <% @letter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <span class="glyphicon icon-large glyphicon-tag">  <%= f.label :category_id %><br>
+    <%= f.select(:category_id, Category.all.collect {|u| [u.title, u.id]}, :prompt => 'Select') %>
+  </div>
+  <div class="field">
+    <!-- <%= f.label :user_id %><br> -->
+    <%= #f.select(:user_id, User.all.collect {|u| [u.name, u.id]}, :prompt => 'Select')
+        f.text_field(:user_id, :value=>current_user.id,:style=>'visibility: hidden') %>
+  </div>
+  <div class="field">
+    <span class="glyphicon icon-large glyphicon-time"> <%= f.label :received_time %><br>
+     <%  if current_user.is_admin? == true %> 
+    <%= f.time_select :received_time,  include_seconds: true, :class=>"form-control" %>
+     <% else %>
+         <%if @letter.received_time.nil? %>
+        <%= f.text_field(:received_time, :value=>Time.zone.now, :readonly=>"readonly" )  %>
+         <% else %>
+        <%= @letter.received_time %> 
+          <% end %>
+     <% end %>
+  </div><br>
+  <div class="actions">
+    <%= f.submit '更新郵件', :class=>"btn btn-success" %>
+  </div>
+<% end %>
+</div>

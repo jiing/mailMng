@@ -1,0 +1,27 @@
+<h1>郵件分類列表</h1>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th><span class="glyphicon icon-large glyphicon-tag"> 分類名稱</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.title %></td>
+        <td><%= link_to 'Show', category %></td>
+        <%  if current_user.is_admin? %>
+        <td><%= link_to 'Edit', edit_category_path(category) %></td>
+        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <%  if current_user.is_admin? %>
+  <%= link_to '新增分類', new_category_path, :class=>"btn btn-success" %>
+  <% end %>
+</div>

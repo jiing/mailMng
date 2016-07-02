@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head>
+    <title>Mustard.org</title>
+    <meta charset="utf-8">
+    <meta name="description" content="基督教芥菜總會-郵務系統">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="robots" content="index,follow" />
+    <meta name="keywords" content="基督教芥菜種會,愛心育幼院,少年之家,以樂以樂,認養,助養,孤兒院,弱勢族群,孫理蓮,捐款,公益,愛心,50應援團,孫越,周杰倫,白崇亮,李艷秋,蕭敬騰,王淑麗,李晶玉,沈春華,李烈,李四端,李宗盛,何飛鵬,宋達民,洪百榕,吳寶春,林書煒,林慶台,范瑋琪,陶晶瑩,陳湘琪,陳淑麗,張小燕,寇紹恩,劉三,魏德聖" />
+    <meta name="description" content="扶助貧困弱勢兒少 提供助學、助養、安置 愛心育幼院 花蓮少年之家 國內、海外貧童救助" />
+    <meta name="rating" content="general" />
+    <meta name="author" content="Hermod, beCreator, Steven" />
+    <meta name="copyright" content="POWERED BY HERMOD - PRODUCTION BY BECREATOR" />
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="navbar navbar-default">
+      <div class="container-fluid">
+        <%if notice %>
+        <div class="alert alert-info">
+          <p class="notice"><%= notice %></p>
+        </div>
+        <% end %>
+        <%if alert %>
+        <div class="alert alert-danger">
+          <p class="alert"><%= alert %></p>
+        </div>
+        <% end %>
+        <%= render :partial=> 'common/user_nav' %>
+        <%= yield %>
+        <div class="container">
+        </div>
+      </body>
+      <div class="footer">
+        <div class="container">
+          <div class="col-sm-3">
+            <!-- <ul class="list-unstyled">
+              <li>服務條款</li>
+              <li>連絡我們</li>
+              <li>其它事項</li>
+            </ul> -->
+          </div>
+        </div>
+        <div class="container">
+          <footer class="span12 text-center">
+            <p>
+              Copyright &copy; 2016 <a href="http://www.mustard.org.tw">基督教芥菜總會</a> <br />made by Jiing's Studio （ 2012 ~ <%= Time.now.year %> ）. All rights reserved.
+            </footer>
+          </div>
+        </div>
+      </html>
